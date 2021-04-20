@@ -1,3 +1,5 @@
+import 'package:apni_kaksha/Pages/carts-page.dart';
+import 'package:apni_kaksha/Utils/page-transition.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -62,31 +64,38 @@ class ProductsAppBar extends StatelessWidget {
                     color: Colors.white,
                     size: 30,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(PageTransition.show(CartPage()));
+                  },
                 )
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.shopping_basket_outlined,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                    SizedBox(width: 5),
-                    CircleAvatar(
-                      radius: 14,
-                      backgroundColor: UiColor.danger,
-                      child: Text(
-                        '$cartUniqueItems',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontWeight: FontWeight.w700,
+              : InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(PageTransition.show(CartPage()));
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.shopping_basket_outlined,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                      SizedBox(width: 5),
+                      CircleAvatar(
+                        radius: 14,
+                        backgroundColor: UiColor.danger,
+                        child: Text(
+                          '$cartUniqueItems',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
         }),
         SizedBox(width: 5)

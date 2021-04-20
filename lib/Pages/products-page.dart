@@ -1,7 +1,7 @@
 import 'package:apni_kaksha/Widgets/item-tile.dart';
 import 'package:apni_kaksha/Widgets/products-app-bar.dart';
 import 'package:flutter/material.dart';
-import 'Utils/dummy-data.dart';
+import '../Utils/dummy-data.dart';
 
 class ProductsPage extends StatelessWidget {
   @override
