@@ -1,4 +1,4 @@
-import 'package:apni_kaksha/item-model.dart';
+import 'package:apni_kaksha/Models/item-model.dart';
 
 class DummyDataSet {
   static List<ItemModel> _basmatiDataSet = [

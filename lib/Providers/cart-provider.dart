@@ -1,4 +1,4 @@
-import 'package:apni_kaksha/item-model.dart';
+import 'package:apni_kaksha/Models/item-model.dart';
 import 'package:flutter/material.dart';
 
 class CartProvider with ChangeNotifier {

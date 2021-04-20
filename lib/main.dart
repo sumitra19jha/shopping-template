@@ -1,6 +1,6 @@
-import 'package:apni_kaksha/cart-provider.dart';
-import 'package:apni_kaksha/products.dart';
-import 'package:apni_kaksha/size-config.dart';
+import 'package:apni_kaksha/Providers/cart-provider.dart';
+import 'package:apni_kaksha/products-page.dart';
+import 'package:apni_kaksha/Utils/size-config.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +31,6 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return ProductsList();
+    return ProductsPage();
   }
 }
