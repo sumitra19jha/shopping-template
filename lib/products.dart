@@ -23,6 +23,8 @@ class _ProductsListState extends State<ProductsList> {
                   style: TextStyle(
                     fontSize: 14,
                     color: UiColor.darkShades,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 Text(
