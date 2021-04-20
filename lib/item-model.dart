@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ItemModel {
+  final String itemId;
   final double sellingPrice;
   final double discountPer;
   final String itemName;
@@ -11,6 +12,7 @@ class ItemModel {
   final String imageUrl;
 
   ItemModel({
+    @required this.itemId,
     @required this.sellingPrice,
     @required this.discountPer,
     @required this.itemName,

@@ -1,7 +1,10 @@
-import 'package:apni_kaksha/dummy_data.dart';
-import 'package:apni_kaksha/item-model.dart';
-import 'package:apni_kaksha/ui-colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import './cart-provider.dart';
+import './dummy-data.dart';
+import './item-model.dart';
+import './ui-colors.dart';
 
 class ProductsList extends StatefulWidget {
   @override
@@ -9,11 +12,6 @@ class ProductsList extends StatefulWidget {
 }
 
 class _ProductsListState extends State<ProductsList> {
-  // final List<String> images = [
-  //   'assets/Images/pic1.jpg',
-  //   'assets/Images/pic2.jpg',
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -72,14 +70,42 @@ class _ProductsListState extends State<ProductsList> {
                         ),
                         onPressed: () {},
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.shopping_basket_outlined,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        onPressed: () {},
-                      ),
+                      Consumer<CartProvider>(builder: (ctx, cartProv, _) {
+                        int cartUniqueItems = cartProv.getCartItemList.length;
+                        return cartUniqueItems == 0
+                            ? IconButton(
+                                icon: Icon(
+                                  Icons.shopping_basket_outlined,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
+                                onPressed: () {},
+                              )
+                            : Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.shopping_basket_outlined,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                  SizedBox(width: 5),
+                                  CircleAvatar(
+                                    radius: 14,
+                                    backgroundColor: UiColor.danger,
+                                    child: Text(
+                                      '$cartUniqueItems',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontFamily: 'OpenSans',
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                      }),
                       SizedBox(width: 5)
                     ],
                     expandedHeight: 200,
@@ -280,43 +306,75 @@ class _ProductsListState extends State<ProductsList> {
                       ),
                       Spacer(),
                       Container(
-                        padding: EdgeInsets.fromLTRB(15, 2, 0, 2),
+                        padding: EdgeInsets.fromLTRB(0, 2, 0, 2),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(28),
                           color: Colors.grey[200],
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'ADD',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.yellow[800],
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'OpenSans',
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            CircleAvatar(
-                              backgroundColor: Colors.yellow[800],
-                              radius: 14,
-                              child: Text(
-                                '+',
+                        child: Consumer<CartProvider>(
+                            builder: (context, cartProv, _) {
+                          int quantity = cartProv.getItemQuantity(data.itemId);
+                          return Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              quantity == 0
+                                  ? SizedBox(width: 15)
+                                  : InkWell(
+                                      onTap: () {
+                                        cartProv.removeItem(data);
+                                      },
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.yellow[800],
+                                        radius: 14,
+                                        child: Text(
+                                          '-',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: 'OpenSans',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                              quantity == 0 ? SizedBox() : SizedBox(width: 10),
+                              Text(
+                                quantity == 0 ? 'ADD' : '$quantity',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.white,
+                                  color: Colors.yellow[800],
                                   fontWeight: FontWeight.w700,
                                   fontFamily: 'OpenSans',
                                 ),
                               ),
-                            )
-                          ],
-                        ),
+                              SizedBox(width: 10),
+                              InkWell(
+                                onTap: () {
+                                  cartProv.addItem(data);
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.yellow[800],
+                                  radius: 14,
+                                  child: Text(
+                                    '+',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: 'OpenSans',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          );
+                        }),
                       ),
                     ],
                   ),
