@@ -1,3 +1,5 @@
+import 'package:apni_kaksha/dummy_data.dart';
+import 'package:apni_kaksha/item-model.dart';
 import 'package:apni_kaksha/ui-colors.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +9,10 @@ class ProductsList extends StatefulWidget {
 }
 
 class _ProductsListState extends State<ProductsList> {
-  final List<String> images = [
-    'assets/Images/pic1.jpg',
-    'assets/Images/pic2.jpg',
-  ];
+  // final List<String> images = [
+  //   'assets/Images/pic1.jpg',
+  //   'assets/Images/pic2.jpg',
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +61,7 @@ class _ProductsListState extends State<ProductsList> {
                         color: Colors.white,
                         size: 30,
                       ),
-                      onPressed: () {
-                        //Navigator.of(context).pop();
-                      },
+                      onPressed: () {},
                     ),
                     actions: [
                       IconButton(
@@ -70,9 +70,7 @@ class _ProductsListState extends State<ProductsList> {
                           color: Colors.white,
                           size: 30,
                         ),
-                        onPressed: () {
-                          //Navigator.of(context).pop();
-                        },
+                        onPressed: () {},
                       ),
                       IconButton(
                         icon: Icon(
@@ -80,9 +78,7 @@ class _ProductsListState extends State<ProductsList> {
                           color: Colors.white,
                           size: 30,
                         ),
-                        onPressed: () {
-                          //Navigator.of(context).pop();
-                        },
+                        onPressed: () {},
                       ),
                       SizedBox(width: 5)
                     ],
@@ -140,11 +136,16 @@ class _ProductsListState extends State<ProductsList> {
                 ];
               },
               body: TabBarView(
-                children: [1, 2, 3]
+                children: DummyDataSet.getItemDAta
                     .map(
                       (items) => Container(
                         color: Colors.grey[200],
-                        child: ListView(),
+                        child: ListView.builder(
+                          itemCount: items.length,
+                          itemBuilder: (ctx, index) {
+                            return _item(items[index]);
+                          },
+                        ),
                       ),
                     )
                     .toList(),
@@ -152,6 +153,179 @@ class _ProductsListState extends State<ProductsList> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _item(ItemModel data) {
+    return Container(
+      height: 180,
+      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Row(
+        children: [
+          SizedBox(width: 10),
+          Expanded(
+            flex: 2,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/Images/surya.jpg',
+                fit: BoxFit.contain,
+                height: 200,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        '\$${(data.sellingPrice * (1 - data.discountPer / 100)).toInt()}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'OpenSans',
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        '\$${data.sellingPrice.toInt()}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black45,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'OpenSans',
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(10, 1, 10, 1),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: UiColor.success,
+                        ),
+                        child: Text(
+                          '${data.discountPer.toInt()}% OFF',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'OpenSans',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '${data.itemName}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'OpenSans',
+                    ),
+                  ),
+                  Text(
+                    '${data.sellerShopName}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'OpenSans',
+                    ),
+                  ),
+                  Spacer(),
+                  Row(
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            '${data.sellingUnitQuantity} ${data.unit.toString().split(".")[1].toLowerCase()}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'OpenSans',
+                            ),
+                          ),
+                          Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
+                      Spacer(),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15, 2, 0, 2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(28),
+                          color: Colors.grey[200],
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'ADD',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.yellow[800],
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'OpenSans',
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            CircleAvatar(
+                              backgroundColor: Colors.yellow[800],
+                              radius: 14,
+                              child: Text(
+                                '+',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'OpenSans',
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
