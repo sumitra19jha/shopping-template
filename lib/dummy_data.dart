@@ -9,6 +9,7 @@ class DummyDataSet {
       itemName: "Gold plus Basmati rice for healthy family",
       sellingUnitQuantity: 5,
       unit: Unit.KG,
+      imageUrl: 'assets/Images/rice1.jpg',
     ),
     ItemModel(
       sellingPrice: 35,
@@ -17,6 +18,25 @@ class DummyDataSet {
       sellerShopName: "Supper Store Indrapuram",
       sellingUnitQuantity: 10,
       unit: Unit.KG,
+      imageUrl: 'assets/Images/rice2.jpg',
+    ),
+    ItemModel(
+      sellingPrice: 25,
+      discountPer: 20,
+      itemName: "Gold plus Basmati rice for healthy family",
+      sellerShopName: "Supper Store Indrapuram",
+      sellingUnitQuantity: 5,
+      unit: Unit.KG,
+      imageUrl: 'assets/Images/rice3.jpg',
+    ),
+    ItemModel(
+      sellingPrice: 35,
+      discountPer: 28,
+      itemName: "Gold plus Basmati rice for healthy family",
+      sellerShopName: "Supper Store Indrapuram",
+      sellingUnitQuantity: 10,
+      unit: Unit.KG,
+      imageUrl: 'assets/Images/rice4.jpeg',
     ),
   ];
 
@@ -28,6 +48,7 @@ class DummyDataSet {
       sellerShopName: "Supper Store Indrapuram",
       sellingUnitQuantity: 5,
       unit: Unit.KG,
+      imageUrl: 'assets/Images/rice3.jpg',
     ),
     ItemModel(
       sellingPrice: 35,
@@ -36,6 +57,7 @@ class DummyDataSet {
       sellerShopName: "Supper Store Indrapuram",
       sellingUnitQuantity: 10,
       unit: Unit.KG,
+      imageUrl: 'assets/Images/rice4.jpeg',
     ),
   ];
 
@@ -47,6 +69,7 @@ class DummyDataSet {
       sellerShopName: "Supper Store Indrapuram",
       sellingUnitQuantity: 5,
       unit: Unit.KG,
+      imageUrl: 'assets/Images/rice5.jpg',
     ),
     ItemModel(
       sellingPrice: 35,
@@ -55,6 +78,7 @@ class DummyDataSet {
       sellerShopName: "Supper Store Indrapuram",
       sellingUnitQuantity: 10,
       unit: Unit.KG,
+      imageUrl: 'assets/Images/rice6.jpg',
     ),
   ];
 

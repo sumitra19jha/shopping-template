@@ -173,7 +173,7 @@ class _ProductsListState extends State<ProductsList> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                'assets/Images/surya.jpg',
+                data.imageUrl,
                 fit: BoxFit.contain,
                 height: 200,
               ),
@@ -346,6 +346,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return new Container(
       child: _tabBar,
+      color: Colors.white,
     );
   }
 

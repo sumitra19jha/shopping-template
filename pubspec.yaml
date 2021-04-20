@@ -48,8 +48,12 @@ flutter:
   assets:
     - assets/Images/pic1.jpg
     - assets/Images/pic2.jpg
-    - assets/Images/rice-bag.jpg
-    - assets/Images/surya.jpg
+    - assets/Images/rice1.jpg
+    - assets/Images/rice2.jpg
+    - assets/Images/rice3.jpg
+    - assets/Images/rice4.jpeg
+    - assets/Images/rice5.jpg
+    - assets/Images/rice6.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
