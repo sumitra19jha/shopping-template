@@ -1,6 +1,5 @@
 import 'package:apni_kaksha/Providers/cart-provider.dart';
 import 'package:apni_kaksha/Utils/size-config.dart';
-import 'package:apni_kaksha/Utils/ui-colors.dart';
 import 'package:apni_kaksha/Widgets/checkout-button.dart';
 import 'package:apni_kaksha/Widgets/checkout-tile.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,9 @@ class CartPage extends StatelessWidget {
                 Icons.navigate_before,
                 color: Colors.black,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
             title: Text(
               'Your Cart',
