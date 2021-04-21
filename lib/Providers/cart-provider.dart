@@ -20,6 +20,17 @@ class CartProvider with ChangeNotifier {
     return _cartItems[index].quantity;
   }
 
+  int get getTotalAmount {
+    double sum = 0;
+    _cartItems.forEach((element) {
+      sum += element.quantity *
+          element.item.sellingPrice *
+          (1 - element.item.discountPer / 100);
+    });
+
+    return sum.toInt();
+  }
+
   void addItem(ItemModel item) {
     int index = _cartItems.indexWhere(
       (element) => element.item.itemId == item.itemId,

@@ -59,7 +59,7 @@ class CheckoutItemTile extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        '₹ ${((cartItem.item.sellingPrice * (1 - cartItem.item.discountPer / 100)) * cartProvider.getItemQuantity(cartItem.item.itemId)).toStringAsFixed(2)}',
+                        '\$ ${((cartItem.item.sellingPrice * (1 - cartItem.item.discountPer / 100)) * cartProvider.getItemQuantity(cartItem.item.itemId)).toStringAsFixed(2)}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
